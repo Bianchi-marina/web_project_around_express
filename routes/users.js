@@ -28,7 +28,7 @@ router.get('/:userId', (req, res) => {
         }
 
         const users = JSON.parse(data);
-        const user = users.find(user => user.id === userId);
+        const user = users.find(user => user._id === userId);
 
         if (!user) {
             res.status(404).json({ message: 'ID do usuário não encontrado' });

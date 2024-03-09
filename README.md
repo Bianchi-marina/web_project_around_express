@@ -1,6 +1,6 @@
 # Tripleten web_project_around_express
 
-# API para Frontend com Node.js e Express.js
+## API com Node.js e Express.js
 
 Este é um exemplo de uma API simples criada com Node.js e Express.js para fornecer dados para um frontend. A API possui rotas para manipular dados de usuários e cards.
 

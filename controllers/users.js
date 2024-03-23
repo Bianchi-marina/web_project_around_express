@@ -34,8 +34,38 @@ async function createUser(req, res) {
   }
 }
 
+async function updateUserProfile(req, res){
+  const userId = req.user._id;
+  const { name, about } = req.body;
+  try {
+    const updatedUser = await User.findByIdAndUpdate(userId, { name, about }, { new: true });
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'Usuário não encontrado' });
+    }
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
+async function updateUserAvatar(req, res) {
+  const userId = req.user._id;
+  const { avatar } = req.body;
+  try {
+    const updatedUser = await User.findByIdAndUpdate(userId, { avatar }, { new: true });
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'Usuário não encontrado' });
+    }
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
-  createUser
+  createUser,
+  updateUserProfile,
+  updateUserAvatar
 };

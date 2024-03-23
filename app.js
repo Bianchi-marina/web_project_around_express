@@ -1,3 +1,4 @@
+require('express-async-errors');
 const express = require('express');
 const mongoose = require('mongoose');
 const usersRouter = require('./routes/users');
@@ -12,11 +13,19 @@ mongoose.connect('mongodb://localhost:27017/aroundb').then(() => {
   console.error('Erro ao conectar ao MongoDB:', err);
 });
 
+app.use((req, res, next) => {
+  req.user = {
+    _id: '65fdfcc099ebcc1d70a78749'
+  };
+  next();
+});
+
+app.use(express.json());
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
 
 app.get('/', (req, res) => {
-  res.send('Bem-vindo à API');
+  res.send('Bem-vindo à API do Projeto Around da TripleTen');
 });
 
 app.use((req, res) => {

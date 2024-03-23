@@ -1,20 +1,13 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-
 const router = express.Router();
+const { getAllCards, createCard, deleteCard, likeCard, dislikeCard } = require('../controllers/cards');
 
-router.get('/', (req, res) => {
-  fs.readFile(path.join(__dirname, '..', 'data', 'cards.json'), 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Erro interno do servidor' });
-      return;
-    }
-
-    const cards = JSON.parse(data);
-    res.json(cards);
-  });
-});
+router.get('/', getAllCards);
+router.post('/', createCard);
+router.delete('/:cardId', deleteCard);
+router.put('/:cardId/likes', likeCard);
+router.delete('/:cardId/likes', dislikeCard);
 
 module.exports = router;

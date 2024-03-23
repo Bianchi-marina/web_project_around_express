@@ -21,12 +21,13 @@ Certifique-se de ter o Node.js instalado em seu sistema antes de executar este p
 ```bash
 npm install
 
-Uso
+## Uso
 Para iniciar o servidor, execute o seguinte comando:
 npm run dev
 Isso iniciará o servidor na porta 3000 por padrão.
 
-Rotas
+### Rotas
+
 Usuários
 GET /users: Retorna uma lista de todos os usuários.
 GET /users/:userId: Retorna os detalhes de um usuário com o ID especificado.
